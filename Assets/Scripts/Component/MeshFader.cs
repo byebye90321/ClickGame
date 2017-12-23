@@ -22,23 +22,14 @@ public class MeshFader : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
+        StopCoroutine(FadeOut());  //防呆
         float alpha = 0;
-        for (int i = 0; i < fadeRenderers.Length; i++)
-        {
-            Color color = fadeRenderers[i].material.color;
-            color.a = alpha;
-            fadeRenderers[i].material.color = color;
-        }
+        ChangeAlpha(alpha);
         while (alpha < 1)
         {
             alpha += Time.deltaTime * speed;
             alpha = Mathf.Min(1, alpha);
-            for (int i = 0; i < fadeRenderers.Length; i++)
-            {
-                Color color = fadeRenderers[i].material.color;
-                color.a = alpha;
-                fadeRenderers[i].material.color = color;
-            }
+            ChangeAlpha(alpha);
             yield return null;
         }
     }
@@ -47,24 +38,24 @@ public class MeshFader : MonoBehaviour
 
     public IEnumerator FadeOut()
     {
+        StopCoroutine(FadeIn());
         float alpha = 1;
-        for (int i = 1; i > fadeRenderers.Length; i--)
+        ChangeAlpha(alpha);
+        while (alpha > 0)
+        {
+            alpha -= Time.deltaTime * speed;
+            alpha = Mathf.Max(0, alpha);
+            ChangeAlpha(alpha);
+            yield return null;
+        }
+    }
+
+    private void ChangeAlpha(float alpha) {
+        for (int i = 0; i < fadeRenderers.Length; i++)
         {
             Color color = fadeRenderers[i].material.color;
             color.a = alpha;
             fadeRenderers[i].material.color = color;
-        }
-        while (alpha > 0)
-        {
-            alpha += Time.deltaTime * speed;
-            alpha = Mathf.Max(0, alpha);
-            for (int i = 1; i > fadeRenderers.Length; i--)
-            {
-                Color color = fadeRenderers[i].material.color;
-                color.a = alpha;
-                fadeRenderers[i].material.color = color;
-            }
-            yield return null;
         }
     }
 }
