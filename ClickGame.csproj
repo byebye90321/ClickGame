@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Component\MeshFader.cs" />
     <Compile Include="Assets\Scripts\View\Behavior\EnemyBehavoir.cs" />
   </ItemGroup>
   <ItemGroup>
