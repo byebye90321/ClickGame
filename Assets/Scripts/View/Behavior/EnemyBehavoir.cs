@@ -14,7 +14,15 @@ public class EnemyBehavoir : MonoBehaviour {
     private AudioSource audioSource;
     private HealthComponent healthComponent;
     [SerializeField]
-    private AudioClip hurtClip; 
+    private AudioClip hurtClip;
+    [SerializeField]
+    private AudioClip deadClip;
+    public EnemyData enemyData;
+    public bool IsDead {
+        get {
+            return healthComponent.IsOver; 
+        }
+    }
 
     private void Awake() {
         animator = GetComponent<Animator>();
@@ -25,7 +33,24 @@ public class EnemyBehavoir : MonoBehaviour {
     private void OnEnable()
     {
         StartCoroutine(meshFader.FadeIn());  //
-        healthComponent.Init(100);  //初始化時100血量
+        
+    }
+
+    [ContextMenu("Text Execute")]
+    private void TestExecute() {
+        StartCoroutine(Execute(enemyData));
+    }
+
+    public IEnumerator Execute(EnemyData enemyData) {  //寫入資料
+        healthComponent.Init(enemyData.health);  //讀入血量
+        while (IsDead == false) {
+            yield return null; //等待
+        }
+        animator.SetTrigger("die");
+        audioSource.clip = deadClip;
+        audioSource.Play();
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return StartCoroutine(meshFader.FadeOut());
     }
 
     public void DoDamage(int attack) {  
@@ -36,7 +61,7 @@ public class EnemyBehavoir : MonoBehaviour {
     }
 
     private void Update() {
-        if (healthComponent.IsOver) {
+        if (healthComponent.IsOver) { 
             return;
         }
         if (Input.GetButtonDown("Fire1")) {

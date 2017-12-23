@@ -91,7 +91,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Component\MeshFader.cs" />
+    <Compile Include="Assets\Scripts\GameFacede.cs" />
+    <Compile Include="Assets\Scripts\Model\EnemyData.cs" />
+    <Compile Include="Assets\Scripts\Model\StageData.cs" />
     <Compile Include="Assets\Scripts\View\Behavior\EnemyBehavoir.cs" />
+    <Compile Include="Assets\Scripts\View\Component\BarTextDisplay.cs" />
     <Compile Include="Assets\Scripts\View\Component\HealthComponent.cs" />
   </ItemGroup>
   <ItemGroup>

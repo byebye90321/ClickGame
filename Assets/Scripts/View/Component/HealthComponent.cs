@@ -9,7 +9,7 @@ public class HealthComponent : MonoBehaviour {
     private int currentHealth;
     [SerializeField]
     private float speed = 5f;
-    public bool IsOver {
+    public bool IsOver {  //死掉
         get {
             return currentHealth <= healthSlider.minValue;
         }
@@ -24,7 +24,7 @@ public class HealthComponent : MonoBehaviour {
         Hurt(50);
     }
 
-    public void Init(int maxHealth) {
+    public void Init(int maxHealth) {  //初始化
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
         currentHealth = maxHealth;
