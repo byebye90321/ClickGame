@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 4109599329778036}
   - component: {fileID: 95683079957126890}
   - component: {fileID: 114034171747621120}
+  - component: {fileID: 114464634104917556}
   m_Layer: 0
   m_Name: Enemy_Bet_Green
   m_TagString: Untagged
@@ -1348,7 +1349,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeRenderers:
   - {fileID: 137433832674686392}
-  speed: 0.1
+  speed: 1
+--- !u!114 &114464634104917556
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709841169847320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cd29376c903beb4abb19836a119bb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtClip: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}
 --- !u!137 &137433832674686392
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1362,7 +1375,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1945ca08888585540b2dbfd8b76f2b32, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

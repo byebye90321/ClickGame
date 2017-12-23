@@ -34,8 +34,6 @@ public class MeshFader : MonoBehaviour
         }
     }
 
-
-
     public IEnumerator FadeOut()
     {
         StopCoroutine(FadeIn());
